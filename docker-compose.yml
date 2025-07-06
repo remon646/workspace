@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  claude-code:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        GIT_USER_NAME: ${GIT_USER_NAME:-"Default User"}
+        GIT_USER_EMAIL: ${GIT_USER_EMAIL:-"user@example.com"}
+    volumes:
+      - .:/workspaces/claude-code
+      - ~/.gitconfig:/home/vscode/.gitconfig:ro
+    stdin_open: true
+    tty: true
